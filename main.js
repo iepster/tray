@@ -56,13 +56,15 @@ const getWindowPosition = () => {
   const windowBounds = window.getBounds();
   const trayBounds = tray.getBounds();
 
+  console.log(trayBounds);
+
   // Center window horizontally below the tray icon
   const x = Math.round(trayBounds.x + (trayBounds.width / 2) - (windowBounds.width / 2))    // Position window 4 pixels vertically below the tray icon
   const y = Math.round(trayBounds.y + trayBounds.height + 4)    
 
   let displays = electron.screen.getAllDisplays()
   // console.log('DISPLAYS', displays, trayBounds);
-  return { x: displays[0].bounds.width - 320, y: 0 }
+  return { x: displays[0].bounds.width - trayBounds.x - 160, y: 0 }
 }
 
 const createWindow = () => {
